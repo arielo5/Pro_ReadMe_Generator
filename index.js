@@ -1,8 +1,63 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const promptUser = () => {
-    return inquirer.prompt([
+
+const generateMD = (answers) =>
+  `# ${answers.tittle}
+
+  ## Description
+  
+  -${answers.motivation}.
+  -${answers.theWhy}.
+  -${answers.problem}.
+  -${answers.learn}.
+
+  ## Table of Contents (Optional)
+
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Credits](#credits)
+  - [License](#license)
+
+  ## Installation
+
+  ${answers.installation}.
+
+  ## Usage
+  
+  ${answers.usage}.
+  
+  ## Links & Screenshots
+
+   * [${answers.tittle}](${answers.liveLink})
+  
+   * [${answers.gitHub}](${answers.gitLink})
+   
+  ## MIT License
+  
+  Copyright (c) 2021 Ariel Martienz
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+  `;
+
+inquirer
+  .prompt([
       {
         type: 'input',
         name: 'tittle',
@@ -63,67 +118,11 @@ const promptUser = () => {
         name: 'thirdParty',
         message: 'If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.',
       },
-    ]);
-  };
+    ])
+      .then((answers) => {
+        const mdFileContent = generateMD(answers);
 
-  const generateMD = (answers) =>
-  `# ${answers.tittle}
-
-  ## Description
-  
-  -${answers.motivation}.
-  -${answers.theWhy}.
-  -${answers.problem}.
-  -${answers.learn}.
-
-  ## Table of Contents (Optional)
-
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Credits](#credits)
-  - [License](#license)
-
-  ## Installation
-
-  ${answers.installation}.
-
-  ## Usage
-  
-  ${answers.usage}.
-  
-  ## Links & Screenshots
-
-   * [${answers.tittle}](${answers.liveLink})
-  
-   * [${answers.gitHub}](${answers.gitLink})
-   
-  ## MIT License
-  
-  Copyright (c) 2021 Ariel Martienz
-  
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-  
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
-  
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.`;
-
-  const init = () => {
-    promptUser()
-      .then((answers) => writeFileAsync('README.md', generateMD(answers)))
-      .then(() => console.log('Successfully wrote the README.md file'))
-      .catch((err) => console.error(err));
-  };
-  
-  init();
+        fs.writeFile('README.md', mdFileContent, (err) =>
+        err ? console.log(err) : console.log('Successfully created README file!')
+      );
+    });
