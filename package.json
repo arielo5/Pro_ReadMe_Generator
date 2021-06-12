@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "inquirer": "^8.1.0"
+    "inquirer": "^8.1.0",
+    "prompt": "^1.1.0",
+    "prompts": "^2.4.1"
   }
 }
