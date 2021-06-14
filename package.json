@@ -1,7 +1,6 @@
 {
-  "name": "Pro_ReadMe_Generator",
+  "name": "pro_readme_generator",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,5 +12,15 @@
     "inquirer": "^8.1.0",
     "prompt": "^1.1.0",
     "prompts": "^2.4.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arielo5/Pro_ReadMe_Generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arielo5/Pro_ReadMe_Generator/issues"
+  },
+  "homepage": "https://github.com/arielo5/Pro_ReadMe_Generator#readme",
+  "description": ""
 }
