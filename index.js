@@ -114,7 +114,7 @@ inquirer
           { name: 'MIT License', value: '[![License](https://img.shields.io/badge/License-MIT-brightgreen)](https://choosealicense.com/licenses/mit/)' },
           { name: 'The Unlicense', value: '[![License](https://img.shields.io/badge/License-The%20Unlicense-red)](https://choosealicense.com/licenses/unlicense/)' },
           { name: 'GNU General Public License v3.0', value: '[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://choosealicense.com/licenses/gpl-3.0/)' },
-          {name: 'Apache License 2.0', value: '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://choosealicense.com/licenses/apache-2.0/)' }
+          { name: 'Apache License 2.0', value: '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://choosealicense.com/licenses/apache-2.0/)' }
         ],        
       },
       {
